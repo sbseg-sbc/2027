@@ -1,0 +1,247 @@
+/* Mesmos tokens visuais do site principal (sbseg-sbc.github.io). */
+:root {
+  --fundo: #fff;
+  --fundo-suave: #f6f8f9;
+  --linha: #e6eaec;
+  --texto: #16242a;
+  --apagado: #5d6b72;
+  --destaque: #0e8a78;
+  --destaque-escuro: #0a6457;
+  --destaque-suave: #e7f4f1;
+  --largura: 71.25rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: Inter, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--destaque-escuro);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+.faixa {
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  max-width: var(--largura);
+}
+
+.pular {
+  position: absolute;
+  left: -100vw;
+}
+
+.pular:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 20;
+  padding: 0.5rem 1rem;
+  background: var(--fundo);
+}
+
+/* topo */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgb(255 255 255 / 92%);
+  border-bottom: 1px solid var(--linha);
+}
+
+.topo .faixa {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.9rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--texto);
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.ponto {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--destaque);
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.menu a {
+  color: var(--apagado);
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: var(--destaque-escuro);
+}
+
+/* abertura */
+.abertura {
+  padding: 4.5rem 0 2.5rem;
+}
+
+.sobretitulo {
+  margin: 0 0 1rem;
+  color: var(--destaque-escuro);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  max-width: 20ch;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+
+.fatos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 0;
+}
+
+.fatos div {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--linha);
+  border-radius: 0.75rem;
+}
+
+.fatos dt {
+  color: var(--apagado);
+  font-size: 0.85rem;
+}
+
+.fatos dd {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+}
+
+.pendente {
+  color: var(--apagado);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* seções */
+main section:not(.abertura) {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--linha);
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+p {
+  max-width: 72ch;
+}
+
+.nota {
+  color: var(--apagado);
+}
+
+.lista {
+  padding-left: 1.2rem;
+}
+
+.lista li {
+  margin: 0.3rem 0;
+}
+
+table {
+  width: 100%;
+  max-width: 40rem;
+  border-collapse: collapse;
+}
+
+caption {
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--linha);
+  text-align: left;
+}
+
+th {
+  background: var(--fundo-suave);
+}
+
+.edicoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.edicoes a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--destaque-suave);
+  text-decoration: none;
+}
+
+.rodape {
+  padding: 2rem 0;
+  border-top: 1px solid var(--linha);
+  color: var(--apagado);
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
