@@ -1,0 +1,863 @@
+/* =========================================================================
+   SBSeg 2027 - prévia da programação
+   Adaptada da programação do SBSeg 2026 (p-sbseg26), com a identidade do
+   site de 2027: marinho do logo, as cores das sombrinhas de frevo e as
+   fontes Bricolage Grotesque e Public Sans. O nome histórico --magenta foi
+   mantido para a cor de destaque e de aviso, hoje o laranja do frevo.
+   ========================================================================= */
+
+:root {
+  color-scheme: light;
+
+  --papel: #f4f6f8;
+  --papel-2: #ffffff;
+  --papel-3: #e9edf1;
+  --tinta: #10233f;
+  --tinta-2: #4d5a6b;
+  --tinta-3: #5f6b7a;
+  --filete: #dfe3e7;
+  --filete-forte: #c3cad2;
+  --agua: #e3eef6;
+  --magenta: #b83409;
+  --magenta-suave: #fdebe3;
+  --terra: #fff3d6;
+  --sombrinha: linear-gradient(90deg, #135b97 0 25%, #dd4012 25% 50%, #f7b500 50% 75%, #009a4e 75% 100%);
+
+  --sala-auditorio: #135b97;
+  --sala-1: #b83409;
+  --sala-2: #00733a;
+  --sala-3: #8a5f00;
+  --sala-4: #b0285a;
+  --sala-5: #5b3fa8;
+  --sala-6: #0b6e7f;
+  --sala-comum: #5b6573;
+
+  --serifa: "Public Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: "Bricolage Grotesque", "Public Sans", system-ui, sans-serif;
+
+  --raio: 12px;
+  --raio-g: 18px;
+  --topo-altura: 118px;
+  --sombra: 0 1px 2px rgba(16, 35, 63, .06), 0 8px 24px -16px rgba(16, 35, 63, .28);
+  --transicao: 180ms cubic-bezier(.2, .7, .3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) { color-scheme: dark;
+    --papel: #0b1a2f; --papel-2: #10233f; --papel-3: #17304f;
+    --tinta: #e8edf3; --tinta-2: #b3c0cf; --tinta-3: #8d9cae;
+    --filete: #22395a; --filete-forte: #2f4d75; --agua: #13304d;
+    --magenta: #ff8a5c; --magenta-suave: #3d1a0e; --terra: #2c2617;
+    --sala-auditorio: #6fb7e3; --sala-1: #ff8a5c; --sala-2: #4fd18b;
+    --sala-3: #f7c548; --sala-4: #f28ab0; --sala-5: #b9a4ff;
+    --sala-6: #5fd0df; --sala-comum: #b3c0cf;
+    --sombra: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px -18px rgba(0, 0, 0, .9);
+  }
+}
+
+:root[data-tema="escuro"] { color-scheme: dark;
+  --papel: #0b1a2f; --papel-2: #10233f; --papel-3: #17304f;
+  --tinta: #e8edf3; --tinta-2: #b3c0cf; --tinta-3: #8d9cae;
+  --filete: #22395a; --filete-forte: #2f4d75; --agua: #13304d;
+  --magenta: #ff8a5c; --magenta-suave: #3d1a0e; --terra: #2c2617;
+  --sala-auditorio: #6fb7e3; --sala-1: #ff8a5c; --sala-2: #4fd18b;
+  --sala-3: #f7c548; --sala-4: #f28ab0; --sala-5: #b9a4ff;
+  --sala-6: #5fd0df; --sala-comum: #b3c0cf;
+  --sombra: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px -18px rgba(0, 0, 0, .9);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--serifa);
+  font-size: 17px;
+  line-height: 1.5;
+  font-optical-sizing: auto;
+  padding-bottom: calc(74px + env(safe-area-inset-bottom));
+  overflow-wrap: break-word;
+}
+
+/* Faixa com as quatro cores das sombrinhas de frevo, como no site 2027. */
+.topo::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: var(--sombrinha);
+}
+
+a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2.5px solid var(--magenta); outline-offset: 2px; border-radius: 4px; }
+
+.envelope { max-width: 1180px; margin-inline: auto; padding-inline: clamp(14px, 4vw, 34px); }
+
+.rotulo {
+  font-family: var(--mono);
+  font-stretch: 85%;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--tinta-2);
+}
+
+.oculto-visual {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------------------------------------- topo -- */
+
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--papel);   /* reserva: Safari antigo ignora color-mix() */
+  background: color-mix(in srgb, var(--papel) 88%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid var(--filete);
+}
+
+/* Grade com áreas nomeadas em vez de flex-wrap com `order`. No celular a busca
+   ocupa uma linha inteira por definição, e não porque a linha "estourou": não
+   há como ela ser espremida a zero nem deixar de quebrar. */
+.topo__linha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "marca acoes"
+    "busca busca";
+  align-items: center;
+  gap: 10px 12px;
+  padding-block: 10px;
+}
+
+.marca { grid-area: marca; display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
+.marca__emblema { inline-size: 34px; block-size: 34px; width: 34px; height: 34px; flex: none; object-fit: contain; }
+.marca__texto { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+.marca__sigla {
+  font-family: var(--mono); font-stretch: 80%; font-weight: 700;
+  font-size: 17px; letter-spacing: -.01em; white-space: nowrap;
+}
+.marca__sigla em { font-style: normal; color: var(--magenta); }
+.marca__local {
+  font-size: 13px; font-style: italic; color: var(--tinta-2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.topo__acoes { grid-area: acoes; display: flex; gap: 6px; }
+
+.botao-icone {
+  display: grid; place-items: center;
+  inline-size: 38px; block-size: 38px;
+  border: 1px solid var(--filete);
+  border-radius: 10px;
+  background: var(--papel-2);
+  cursor: pointer;
+  transition: border-color var(--transicao), transform var(--transicao);
+}
+.botao-icone:hover { border-color: var(--filete-forte); }
+.botao-icone:active { transform: scale(.94); }
+.botao-icone svg { inline-size: 18px; block-size: 18px; }
+
+/* -------------------------------------------------------------- busca --- */
+
+.busca { grid-area: busca; position: relative; min-inline-size: 0; }
+
+.busca__campo {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--papel-2);
+  border: 1.5px solid var(--filete-forte);
+  border-radius: 999px;
+  padding: 0 8px 0 15px;
+  block-size: 48px;
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+.busca__campo:focus-within {
+  border-color: var(--magenta);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--magenta) 16%, transparent);
+}
+.busca__campo svg { inline-size: 19px; block-size: 19px; flex: none; color: var(--tinta-2); }
+
+.busca__entrada {
+  flex: 1 1 auto; min-width: 0; width: 100%;
+  border: 0; background: none; outline: none;
+  /* O Safari do iOS aplica aparência nativa de campo de busca, que impõe altura
+     e recorte próprios. Zeramos para o campo ser só o que está escrito aqui. */
+  -webkit-appearance: none; appearance: none; border-radius: 0;
+  font-family: var(--serifa); font-size: 16.5px; color: var(--tinta);
+  padding: 0;
+}
+.busca__entrada::placeholder { color: var(--tinta-3); font-style: italic; }
+.busca__entrada::-webkit-search-cancel-button { display: none; }
+
+.busca__limpar {
+  border: 0; background: var(--papel-3); border-radius: 999px;
+  inline-size: 32px; block-size: 32px; display: none; place-items: center;
+  cursor: pointer; flex: none;
+}
+.busca__limpar[data-visivel="sim"] { display: grid; }
+.busca__limpar svg { inline-size: 14px; block-size: 14px; color: var(--tinta); }
+
+/* ---------------------------------------------------------- navegação --- */
+
+.navegacao {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+}
+
+/* Barra inferior do celular. Está fora do <header> no HTML, então é filha
+   direta de <body> e o `fixed` se resolve contra a viewport, sem depender de
+   como o navegador trata um ancestral sticky com backdrop-filter. */
+.navegacao--barra {
+  position: fixed;
+  left: 0; right: 0;        /* reserva física antes da propriedade lógica */
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 50;
+  padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+  background: var(--papel);
+  background: color-mix(in srgb, var(--papel) 93%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border-top: 1px solid var(--filete);
+}
+
+.navegacao--topo { display: none; }
+
+.navegacao__item {
+  display: grid; justify-items: center; gap: 3px;
+  padding: 7px 4px 6px;
+  border: 0; border-radius: 12px; background: none;
+  cursor: pointer; position: relative;
+  color: var(--tinta-2);
+  transition: color var(--transicao), background var(--transicao);
+}
+.navegacao__item svg { inline-size: 21px; block-size: 21px; }
+.navegacao__item span {
+  font-family: var(--mono); font-stretch: 82%; font-size: 10px;
+  font-weight: 600; letter-spacing: .04em; white-space: nowrap;
+}
+.navegacao__item[aria-current="page"] { color: var(--magenta); background: var(--magenta-suave); }
+
+.navegacao__contador {
+  position: absolute; top: 2px; inset-inline-end: calc(50% - 22px);
+  min-inline-size: 17px; padding: 0 4px;
+  background: var(--magenta); color: #fff;
+  border-radius: 999px;
+  font-family: var(--mono); font-stretch: 80%; font-size: 9.5px; font-weight: 700;
+  line-height: 17px; text-align: center;
+}
+.navegacao__contador:empty { display: none; }
+
+/* ------------------------------------------------------------- painéis -- */
+
+.painel { display: none; padding-block: 18px 40px; }
+.painel[data-ativo="sim"] { display: block; animation: entrar 260ms cubic-bezier(.2, .7, .3, 1); }
+
+@keyframes entrar { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+
+.secao-titulo {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin: 26px 0 12px;
+}
+.secao-titulo h2 { margin: 0; font-size: 21px; font-weight: 600; letter-spacing: -.01em; }
+
+/* ----------------------------------------------------------- "agora" ---- */
+
+.farol {
+  position: relative;
+  border: 1.5px solid var(--tinta);
+  border-radius: var(--raio-g);
+  background: var(--papel-2);
+  padding: 15px 16px 14px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.farol::after {
+  content: ""; position: absolute; inset-block: 0; inset-inline-start: 0;
+  inline-size: 4px; background: var(--magenta);
+}
+.farol__topo { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.farol__pulso {
+  inline-size: 8px; block-size: 8px; border-radius: 999px; background: var(--magenta);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--magenta) 60%, transparent);
+  animation: pulsar 2.4s ease-out infinite;
+}
+@keyframes pulsar {
+  70% { box-shadow: 0 0 0 11px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.farol__rotulo { color: var(--magenta); }
+.farol__nota { font-size: 15px; color: var(--tinta-2); font-style: italic; margin: 0; }
+
+/* ---------------------------------------------------------- dias/abas --- */
+
+.abas {
+  position: sticky;
+  top: var(--topo-altura);
+  z-index: 30;
+  display: flex; gap: 6px;
+  padding: 8px 0;
+  margin-bottom: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: linear-gradient(to bottom, var(--papel) 72%, transparent);
+}
+.abas::-webkit-scrollbar { display: none; }
+
+.aba {
+  flex: none;
+  border: 1px solid var(--filete);
+  background: var(--papel-2);
+  border-radius: 999px;
+  padding: 7px 14px 6px;
+  cursor: pointer;
+  display: grid; gap: 1px; justify-items: start;
+  transition: border-color var(--transicao), background var(--transicao), color var(--transicao);
+}
+.aba b {
+  font-family: var(--mono); font-stretch: 82%; font-size: 12px; font-weight: 700;
+  letter-spacing: .02em;
+}
+.aba small { font-size: 11px; color: var(--tinta-2); font-style: italic; }
+.aba[aria-selected="true"] { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
+.aba[aria-selected="true"] small { color: color-mix(in srgb, var(--papel) 76%, var(--tinta)); }
+.aba[data-hoje="sim"] b::after { content: " ·"; color: var(--magenta); }
+
+/* -------------------------------------------------------------- faixa --- */
+
+.faixa-horario {
+  display: flex; align-items: center; gap: 12px;
+  margin: 24px 0 10px;
+}
+.faixa-horario__hora {
+  font-family: var(--mono); font-stretch: 80%; font-weight: 700;
+  font-size: 15px; letter-spacing: -.01em; flex: none;
+}
+.faixa-horario__linha { flex: 1; block-size: 1px; background: var(--filete-forte); }
+.faixa-horario__fim { font-family: var(--mono); font-stretch: 80%; font-size: 11px; color: var(--tinta-3); flex: none; }
+
+/* ------------------------------------------------------------- cartão --- */
+
+.lista { display: grid; gap: 10px; }
+
+.cartao {
+  --cor-sala: var(--sala-comum);
+  position: relative;
+  background: var(--papel-2);
+  border: 1px solid var(--filete);
+  border-radius: var(--raio);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+.cartao:hover { border-color: var(--filete-forte); box-shadow: var(--sombra); }
+.cartao[data-selecionado="sim"] { border-color: var(--cor-sala); box-shadow: inset 3px 0 0 var(--cor-sala); }
+.cartao[data-intervalo="sim"] { background: transparent; border-style: dashed; }
+
+.cartao__cabeca {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px 12px 12px 14px;
+  align-items: start;
+}
+
+.cartao__corpo { min-width: 0; display: grid; gap: 7px; }
+
+.cartao__meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+
+.sigla {
+  font-family: var(--mono); font-stretch: 80%; font-size: 10.5px; font-weight: 700;
+  letter-spacing: .06em;
+  padding: 2px 6px 1px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--cor-sala) 13%, transparent);
+  color: var(--cor-sala);
+  white-space: nowrap;
+}
+.tipo { font-family: var(--mono); font-stretch: 82%; font-size: 10.5px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--tinta-3); }
+
+.cartao__titulo {
+  margin: 0; font-size: 17.5px; font-weight: 550; line-height: 1.28;
+  letter-spacing: -.011em;
+}
+.cartao__titulo a { text-decoration-color: var(--filete-forte); }
+
+.local {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-stretch: 82%; font-size: 11.5px; font-weight: 600;
+  letter-spacing: .03em;
+  color: var(--cor-sala);
+  border: 0; background: none; padding: 0;
+  text-align: start;
+}
+button.local { cursor: pointer; }
+.local::before {
+  content: ""; inline-size: 9px; block-size: 9px; border-radius: 3px; flex: none;
+  background: var(--cor-sala);
+}
+button.local:hover { text-decoration: underline; text-decoration-thickness: 1.5px; }
+
+.horas { font-family: var(--mono); font-stretch: 80%; font-size: 11.5px; color: var(--tinta-2); letter-spacing: .01em; }
+
+.cartao__lado { display: grid; gap: 6px; justify-items: end; }
+
+.estrela {
+  border: 1px solid var(--filete);
+  background: var(--papel-2);
+  border-radius: 9px;
+  inline-size: 36px; block-size: 36px;
+  display: grid; place-items: center; cursor: pointer;
+  transition: all var(--transicao);
+}
+.estrela svg { inline-size: 17px; block-size: 17px; fill: none; stroke: var(--tinta-2); stroke-width: 1.7; }
+.estrela:active { transform: scale(.9); }
+.estrela[aria-pressed="true"] { background: var(--magenta); border-color: var(--magenta); }
+.estrela[aria-pressed="true"] svg { fill: #fff; stroke: #fff; }
+
+.contar-apres {
+  border: 0; background: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 8px 12px 8px 14px;
+  inline-size: 100%;
+  border-top: 1px dashed var(--filete);
+  font-family: var(--mono); font-stretch: 82%; font-size: 11px; font-weight: 600;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--tinta-2);
+}
+.contar-apres svg { inline-size: 13px; block-size: 13px; transition: transform var(--transicao); }
+.contar-apres[aria-expanded="true"] svg { transform: rotate(180deg); }
+.contar-apres:hover { color: var(--magenta); }
+
+.artigos { display: grid; padding: 0 12px 6px 14px; }
+.artigos[hidden] { display: none; }
+
+.artigo {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px;
+  padding: 11px 0;
+  border-top: 1px solid var(--filete);
+  align-items: start;
+}
+.artigo:first-child { border-top: 0; }
+.artigo__titulo { margin: 0 0 3px; font-size: 16px; font-weight: 500; line-height: 1.34; }
+.artigo__autores { margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--tinta-2); font-style: italic; }
+.artigo .estrela { inline-size: 30px; block-size: 30px; border-radius: 8px; }
+.artigo .estrela svg { inline-size: 14px; block-size: 14px; }
+
+.coordenacao { font-size: 13.5px; color: var(--tinta-2); margin: 0; }
+.coordenacao b { font-family: var(--mono); font-stretch: 82%; font-size: 10.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--tinta-3); }
+
+/* -------------------------------------------------------- resultados --- */
+
+.resumo-busca {
+  display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+.resumo-busca strong { font-family: var(--mono); font-stretch: 80%; font-size: 15px; font-weight: 700; }
+
+.filtros {
+  display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 12px; scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 26px), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 26px), transparent);
+}
+.filtros::-webkit-scrollbar { display: none; }
+.filtro {
+  flex: none; cursor: pointer;
+  border: 1px solid var(--filete); background: var(--papel-2);
+  border-radius: 999px; padding: 5px 11px 4px;
+  font-family: var(--mono); font-stretch: 82%; font-size: 11px; font-weight: 600;
+  letter-spacing: .03em; color: var(--tinta-2);
+  transition: all var(--transicao);
+}
+.filtro[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
+
+mark { background: color-mix(in srgb, var(--magenta) 20%, transparent); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+.resultado__origem {
+  font-size: 13px; color: var(--tinta-2); margin: 0;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+
+
+.vazio {
+  text-align: center; padding: 48px 20px;
+  border: 1px dashed var(--filete-forte); border-radius: var(--raio-g);
+}
+.vazio p { margin: 6px 0 0; color: var(--tinta-2); font-style: italic; }
+.vazio__bussola { inline-size: 46px; block-size: 46px; color: var(--filete-forte); }
+
+/* ------------------------------------------------------------- mapa ----- */
+
+.carta {
+  border: 1.5px solid var(--tinta);
+  border-radius: var(--raio-g);
+  background: var(--papel-2);
+  padding: 10px;
+  overflow: hidden;
+}
+.carta svg { display: block; inline-size: 100%; block-size: auto; }
+
+.carta-legenda { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 6px; margin-top: 12px; }
+.legenda-sala {
+  --cor-sala: var(--sala-comum);
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--filete); border-radius: 10px;
+  background: var(--papel-2); padding: 8px 10px; cursor: pointer; text-align: start;
+  transition: all var(--transicao);
+}
+.legenda-sala::before { content: ""; inline-size: 11px; block-size: 11px; border-radius: 3px; background: var(--cor-sala); flex: none; }
+.legenda-sala[aria-pressed="true"] { border-color: var(--cor-sala); background: color-mix(in srgb, var(--cor-sala) 10%, transparent); }
+.legenda-sala b { font-family: var(--mono); font-stretch: 82%; font-size: 12px; font-weight: 600; }
+
+.aviso-carta {
+  display: flex; gap: 8px; align-items: flex-start;
+  margin-top: 12px; padding: 10px 12px;
+  border: 1px solid var(--magenta); border-radius: var(--raio);
+  background: var(--magenta-suave);
+  font-size: 13.5px; line-height: 1.45;
+}
+.aviso-carta svg { inline-size: 16px; block-size: 16px; color: var(--magenta); flex: none; margin-top: 2px; }
+
+/* -------------------------------------------------------- minha grade -- */
+
+.conflito {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--mono); font-stretch: 82%; font-size: 10.5px; font-weight: 600;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--magenta);
+  padding: 6px 12px 8px 14px;
+}
+.conflito svg { inline-size: 14px; block-size: 14px; }
+
+.barra-acoes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.acao {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid var(--filete-forte); background: var(--papel-2);
+  border-radius: 999px; padding: 8px 15px 7px; cursor: pointer;
+  font-family: var(--mono); font-stretch: 82%; font-size: 11.5px; font-weight: 600;
+  letter-spacing: .03em;
+  transition: all var(--transicao);
+}
+.acao:hover { border-color: var(--tinta); }
+.acao svg { inline-size: 15px; block-size: 15px; }
+.acao--perigo { color: var(--magenta); border-color: color-mix(in srgb, var(--magenta) 45%, transparent); }
+
+/* ----------------------------------------------------------- rodapé ---- */
+
+.info-bloco {
+  border: 1px solid var(--filete); border-radius: var(--raio-g);
+  background: var(--papel-2); padding: 16px 18px; margin-bottom: 12px;
+}
+.info-bloco h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; }
+.info-bloco p { margin: 0 0 8px; font-size: 15px; color: var(--tinta-2); line-height: 1.55; }
+.info-bloco p:last-child { margin-bottom: 0; }
+
+.identidade {
+  display: grid; justify-items: center; gap: 12px;
+  border: 1px solid var(--filete); border-radius: var(--raio-g);
+  background: var(--papel-2);
+  padding: 22px 18px 18px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.identidade__logo {
+  inline-size: min(160px, 60%); block-size: auto;
+  /* Placa branca com borda arredondada: o logo foi feito para fundo claro, e
+     a placa o mantém legível no tema escuro. */
+  background: #fff; border-radius: 10px; padding: 10px 14px;
+}
+.identidade p {
+  margin: 0; max-inline-size: 46ch;
+  font-size: 14.5px; font-style: italic; line-height: 1.5; color: var(--tinta-2);
+}
+
+.patrocinio { margin-top: 8px; }
+.patrocinio__grupo { margin-bottom: 20px; }
+.patrocinio__logos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.patrocinio__logos img {
+  block-size: clamp(38px, 9vw, 54px); inline-size: auto; max-inline-size: 160px;
+  object-fit: contain;
+  background: #fff; border: 1px solid var(--filete); border-radius: 8px; padding: 7px 11px;
+}
+
+.rodape {
+  border-top: 1px solid var(--filete);
+  margin-top: 34px; padding-top: 18px;
+  font-size: 13.5px; color: var(--tinta-2);
+}
+.rodape p { margin: 0 0 6px; }
+
+/* ------------------------------------------------- grade por sala (>=) -- */
+
+.grade-salas, .grade-completa { display: none; }
+
+/* As três vistas valem em qualquer largura. No celular os quadros rolam na
+   horizontal, com a coluna de horas fixa, que é o comportamento já usado. */
+body[data-vista="salas"]    .grade-lista,
+body[data-vista="completa"] .grade-lista    { display: none; }
+body[data-vista="salas"]    .grade-salas    { display: block; }
+body[data-vista="completa"] .grade-completa { display: block; }
+/* Na vista completa os quatro dias aparecem juntos: as abas de dia perdem o sentido. */
+body[data-vista="completa"] .abas { display: none; }
+
+.alternar-vista {
+  display: flex; gap: 4px; margin-inline-start: auto;
+  overflow-x: auto; scrollbar-width: none; max-inline-size: 100%;
+}
+.alternar-vista::-webkit-scrollbar { display: none; }
+.alternar-vista .filtro { flex: none; }
+
+.dia-completo { margin-bottom: 26px; break-inside: avoid; }
+.dia-completo__titulo {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin: 0 0 10px; font-size: 18px; font-weight: 600; letter-spacing: -.01em;
+}
+
+@media (min-width: 900px) {
+  body { padding-bottom: 0; }
+
+  .navegacao--barra { display: none; }
+
+  .navegacao--topo {
+    display: grid;
+    grid-area: nav;
+    grid-auto-columns: auto;
+    gap: 4px;
+  }
+  .navegacao__item { grid-auto-flow: column; align-items: center; gap: 7px; padding: 8px 13px; }
+  .navegacao__item span { font-size: 11.5px; }
+  .navegacao__contador { position: static; }
+
+  /* Uma linha só. A coluna da busca tem mínimo garantido, então ela nunca é
+     comprimida pelos vizinhos. */
+  .topo__linha {
+    grid-template-columns: auto auto minmax(220px, 1fr) auto;
+    grid-template-areas: "marca nav busca acoes";
+    padding-block: 12px;
+  }
+  .busca { justify-self: end; inline-size: min(400px, 100%); }
+  .marca__emblema { inline-size: 38px; block-size: 38px; width: 38px; height: 38px; }
+
+  .cartao__titulo { font-size: 18.5px; }
+
+}
+
+
+.grade-salas__quadro { overflow-x: auto; border: 1px solid var(--filete); border-radius: var(--raio-g); background: var(--papel-2); }
+.grade-salas__grade { display: grid; min-inline-size: 860px; position: relative; }
+/* A coluna de horas gruda à esquerda quando a grade rola na horizontal.
+   O cabeçalho não pode ser sticky vertical: o contêiner só rola na horizontal,
+   e o `top` o descolava para o meio da grade. */
+.grade-salas__cabecalho {
+  background: var(--papel-2); border-bottom: 1px solid var(--filete-forte);
+  padding: 9px 8px; text-align: center;
+}
+.grade-salas__canto { position: sticky; inset-inline-start: 0; z-index: 6; }
+.grade-salas__hora {
+  position: sticky; inset-inline-start: 0; z-index: 4;
+  background: var(--papel-2);
+  font-family: var(--mono); font-stretch: 80%; font-size: 11px; font-weight: 600; color: var(--tinta-2);
+  padding: 8px 10px; border-top: 1px solid var(--filete); border-inline-end: 1px solid var(--filete);
+}
+.bloco {
+  --cor-sala: var(--sala-comum);
+  margin: 3px; padding: 8px 9px; border-radius: 9px;
+  border: 1px solid color-mix(in srgb, var(--cor-sala) 40%, transparent);
+  background: color-mix(in srgb, var(--cor-sala) 8%, var(--papel-2));
+  cursor: pointer; text-align: start; overflow: hidden;
+  display: grid; gap: 3px; align-content: start;
+}
+.bloco:hover { border-color: var(--cor-sala); }
+.bloco b {
+  font-size: 13.5px; font-weight: 550; line-height: 1.28;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+.bloco__sigla {
+  font-family: var(--mono); font-stretch: 80%; font-size: 10px; font-weight: 700;
+  letter-spacing: .06em; color: var(--cor-sala);
+  display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap;
+}
+.bloco[data-selecionado="sim"] { box-shadow: inset 3px 0 0 var(--cor-sala); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+
+@media print {
+  .topo, .navegacao, .filtros, .estrela, .abas { display: none !important; }
+  .painel { display: block !important; }
+  body { padding: 0; background: #fff; }
+}
+
+/* ------------------------------------------- local em destaque (busca) -- */
+
+.faixa-local {
+  --cor-sala: var(--sala-comum);
+  display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+  margin-top: 3px; padding: 9px 12px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--cor-sala) 11%, transparent);
+  border-inline-start: 3px solid var(--cor-sala);
+}
+.faixa-local__sala {
+  font-family: var(--mono); font-stretch: 82%; font-size: 13px; font-weight: 700;
+  letter-spacing: .03em; color: var(--cor-sala);
+}
+.faixa-local__quando { font-family: var(--mono); font-stretch: 82%; font-size: 11px; color: var(--tinta-2); }
+.faixa-local__mapa {
+  margin-inline-start: auto; border: 0; background: none; padding: 0; cursor: pointer;
+  font-family: var(--mono); font-stretch: 82%; font-size: 11px; font-weight: 600;
+  color: var(--cor-sala); text-decoration: underline; text-underline-offset: 3px;
+}
+.faixa-local__mapa:hover { text-decoration-thickness: 2px; }
+
+.carta__sala { cursor: pointer; }
+.carta__sala:hover rect:first-of-type { filter: saturate(1.3); }
+.carta__sala:focus-visible { outline: 2.5px solid var(--magenta); outline-offset: 3px; }
+
+.aviso {
+  position: fixed; z-index: 80;
+  inset-inline: 14px; bottom: calc(86px + env(safe-area-inset-bottom));
+  margin-inline: auto; max-inline-size: 430px;
+  background: var(--tinta); color: var(--papel);
+  padding: 11px 16px; border-radius: 12px;
+  font-size: 14.5px; text-align: center;
+  box-shadow: 0 14px 36px -14px rgba(0, 0, 0, .55);
+  opacity: 0; transform: translateY(10px); pointer-events: none;
+  transition: opacity 200ms var(--transicao), transform 200ms var(--transicao);
+}
+.aviso[data-visivel="sim"] { opacity: 1; transform: none; }
+@media (min-width: 900px) { .aviso { bottom: 22px; } }
+
+/* ------------------------------------------------- selo de patrocínio --- */
+
+/* Duas relações diferentes, com pesos diferentes: a faixa cheia diz que a
+   atividade é do patrocinador; a faixa leve diz que há um autor com filiação
+   ao patrocinador dentro dela. */
+.selo {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 8px 12px 8px 14px;
+  background: var(--papel-3);
+  border-bottom: 1px solid var(--filete);
+  border-radius: calc(var(--raio) - 1px) calc(var(--raio) - 1px) 0 0;
+}
+.selo__rotulo { color: var(--tinta); }
+
+.selo--leve {
+  background: none;
+  border-bottom: 0;
+  border-top: 1px dashed var(--filete);
+  border-radius: 0;
+  padding-block: 7px 8px;
+}
+
+.selo__marca {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-stretch: 82%; font-size: 11.5px; font-weight: 700;
+  letter-spacing: .02em; color: var(--tinta);
+}
+.selo__marca img {
+  block-size: 17px; inline-size: auto; max-inline-size: 74px;
+  object-fit: contain; flex: none;
+  background: #fff; border-radius: 3px; padding: 2px 4px;
+}
+.selo__marca--logo { gap: 0; }
+
+.selo__cota {
+  font-family: var(--mono); font-stretch: 82%; font-size: 9.5px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-2);
+  border: 1px solid var(--filete-forte); border-radius: 999px; padding: 2px 8px 1px;
+}
+
+.cartao[data-patrocinio="sim"] { border-color: var(--filete-forte); }
+
+.artigo__patrocinio { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0 0; }
+.artigo__patrocinio .selo__marca { font-size: 10.5px; font-weight: 600; color: var(--tinta-2); }
+
+.bloco__sigla .selo__marca img { block-size: 13px; max-inline-size: 52px; padding: 1px 3px; }
+
+/* --------------------------------- atividades por patrocinador (Local) -- */
+
+.agenda-patrocinio { display: grid; gap: 12px; }
+
+.agenda-bloco {
+  border: 1px solid var(--filete); border-radius: var(--raio);
+  background: var(--papel-2); overflow: hidden;
+}
+.agenda-bloco__topo {
+  display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
+  padding: 10px 14px;
+  background: var(--papel-3);
+  border-bottom: 1px solid var(--filete);
+}
+.agenda-bloco__topo .selo__marca { font-size: 13px; }
+.agenda-bloco__topo .selo__marca img { block-size: 22px; max-inline-size: 92px; }
+
+.agenda-item {
+  --cor-sala: var(--sala-comum);
+  display: grid; grid-template-columns: 1fr; gap: 3px;
+  inline-size: 100%; padding: 10px 14px; text-align: start;
+  border: 0; border-top: 1px solid var(--filete); background: none; cursor: pointer;
+  transition: background var(--transicao);
+}
+.agenda-item:first-child { border-top: 0; }
+.agenda-item:hover { background: var(--papel-3); }
+.agenda-item__quando {
+  font-family: var(--mono); font-stretch: 80%; font-size: 10.5px; font-weight: 600;
+  letter-spacing: .04em; color: var(--tinta-2);
+}
+.agenda-item__nome { font-size: 15.5px; line-height: 1.3; }
+.agenda-item__onde {
+  font-family: var(--mono); font-stretch: 82%; font-size: 10.5px; font-weight: 600;
+  letter-spacing: .03em; color: var(--cor-sala);
+}
+
+@media (min-width: 700px) {
+  .agenda-patrocinio { grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); align-items: start; }
+  .agenda-item {
+    grid-template-columns: auto 1fr auto; gap: 4px 12px; align-items: baseline;
+  }
+  .agenda-item__quando, .agenda-item__onde { white-space: nowrap; }
+}
+
+/* ------------------------------------------------ ações por item ------- */
+
+.cartao__rodape {
+  margin: 0;
+  padding: 8px 12px 10px 14px;
+  border-top: 1px dashed var(--filete);
+}
+
+.acao-inline {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--mono); font-stretch: 82%; font-size: 11px; font-weight: 600;
+  letter-spacing: .03em; color: var(--tinta-2);
+  text-decoration: none;
+}
+.acao-inline svg { inline-size: 15px; block-size: 15px; }
+.acao-inline:hover { color: var(--magenta); text-decoration: underline; text-underline-offset: 3px; }
+
+.nota-calendario { margin: -6px 0 16px; max-inline-size: 62ch; }
+.nota-calendario:empty { display: none; }
+
+/* ------------------------------------------------------------- prévia -- */
+
+.aviso-previa {
+  margin: 16px 0 4px;
+  padding: 12px 16px;
+  border-left: 5px solid #f7b500;
+  border-radius: 0 var(--raio) var(--raio) 0;
+  background: var(--terra);
+  color: var(--tinta);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.aviso-previa a { color: var(--magenta); font-weight: 600; }
+

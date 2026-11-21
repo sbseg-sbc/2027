@@ -841,6 +841,212 @@ figcaption {
   font-weight: 600;
 }
 
+/* páginas das chamadas */
+.chamada-cabeca {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: 1.5rem;
+}
+
+.migalhas ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  color: var(--apagado);
+  font-size: 0.9rem;
+  list-style: none;
+}
+
+.migalhas li + li::before {
+  content: "›";
+  margin-right: 0.5rem;
+}
+
+.chamada-cabeca h1 {
+  max-width: 30ch;
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.chamada-cabeca__sub {
+  margin: 0.75rem 0 0;
+  color: var(--laranja-texto);
+  font-size: 1.1rem;
+}
+
+.aviso-previa {
+  margin: 1.75rem 0 0;
+  padding: 1rem 1.25rem;
+  max-width: 52rem;
+  border-left: 5px solid var(--amarelo);
+  border-radius: 0 var(--raio) var(--raio) 0;
+  background: #fff8e1;
+}
+
+.aviso-previa p {
+  margin: 0;
+}
+
+.aviso-previa b {
+  color: var(--marinho);
+}
+
+.chamada-grade {
+  display: grid;
+  gap: 2.5rem 4rem;
+  padding-bottom: var(--espaco-secao);
+}
+
+@media (width >= 62rem) {
+  .chamada-grade {
+    grid-template-columns: minmax(0, 1fr) 19rem;
+  }
+
+  .lateral__conteudo {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+@media (width >= 62rem) {
+  .chamada-grade--uma {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.chamada section {
+  padding-top: 1.5rem;
+}
+
+.chamada h2,
+.lateral h2 {
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+.chamada h2::before {
+  width: 2.5rem;
+  height: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.chamada h3 {
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+}
+
+.chamada .itens ul {
+  margin: 0.25rem 0 0.75rem;
+  padding-left: 1.2rem;
+}
+
+.chamada .itens ul li {
+  margin: 0.2rem 0;
+}
+
+.lateral h2 {
+  margin-bottom: 0.75rem;
+}
+
+.lateral h2::before {
+  display: none;
+}
+
+.lateral h2 + * {
+  margin-top: 0;
+}
+
+.lateral .cronograma {
+  font-size: 0.95rem;
+}
+
+.lateral .cronograma li {
+  padding-block: 0.6rem;
+}
+
+.lateral .cronograma li::before {
+  top: 1rem;
+}
+
+.lista-chamadas {
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.lista-chamadas li {
+  border-bottom: 1px solid var(--linha);
+}
+
+.lista-chamadas a {
+  display: block;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+
+.lista-chamadas a[aria-current="page"] {
+  color: var(--marinho);
+  font-weight: 700;
+}
+
+.cartoes-chamadas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1.5rem 2.5rem;
+  margin: 1rem 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.cartoes-chamadas li {
+  display: grid;
+  align-content: start;
+  gap: 0.3rem;
+  padding-top: 0.9rem;
+  border-top: 3px solid var(--nevoa);
+}
+
+.cartoes-chamadas li:nth-child(4n + 1) {
+  border-top-color: var(--azul);
+}
+
+.cartoes-chamadas li:nth-child(4n + 2) {
+  border-top-color: var(--laranja);
+}
+
+.cartoes-chamadas li:nth-child(4n + 3) {
+  border-top-color: var(--amarelo);
+}
+
+.cartoes-chamadas li:nth-child(4n) {
+  border-top-color: var(--verde);
+}
+
+.cartoes-chamadas a,
+.cartoes-chamadas b {
+  color: var(--marinho);
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.cartoes-chamadas span {
+  color: var(--apagado);
+}
+
+.selo {
+  justify-self: start;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--fundo-suave);
+  color: var(--apagado);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
