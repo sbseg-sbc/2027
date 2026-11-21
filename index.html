@@ -3,25 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SBSeg 2027: XXVII Simpósio Brasileiro de Cibersegurança</title>
-<meta name="description" content="XXVII Simpósio Brasileiro de Cibersegurança (SBSeg 2027), promovido pela Comissão Especial de Cibersegurança (CESeg) da Sociedade Brasileira de Computação (SBC).">
+<title>SBSeg 2027: XXVII Simpósio Brasileiro de Cibersegurança, Recife</title>
+<meta name="description" content="XXVII Simpósio Brasileiro de Cibersegurança (SBSeg 2027), de 30 de agosto a 2 de setembro de 2027, no Mar Hotel, em Boa Viagem, Recife (PE). Promoção da CESeg/SBC.">
+<meta name="theme-color" content="#10233f">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap">
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
 <header class="topo">
-  <div class="faixa">
-    <a class="marca" href="./"><span class="ponto" aria-hidden="true"></span>SBSeg 2027</a>
+  <div class="faixa topo__faixa">
+    <a class="marca" href="./">
+      <img src="assets/img/logo-sbseg2027.png" width="320" height="354" alt="">
+      <span>SBSeg 2027</span>
+    </a>
     <nav class="menu" aria-label="Navegação principal">
+      <a href="#tema">Tema 2027</a>
       <a href="#evento">O evento</a>
       <a href="#chamadas">Chamadas</a>
       <a href="#datas">Datas</a>
+      <a href="#recife">Recife</a>
       <a href="#local">Local</a>
-      <a href="#organizacao">Organização</a>
       <a href="#patrocinio">Patrocine</a>
       <a href="../">Todas as edições</a>
     </nav>
@@ -30,90 +36,255 @@
 
 <main id="conteudo">
   <section class="abertura" aria-labelledby="titulo">
+    <div class="faixa abertura__grade">
+      <div class="abertura__texto">
+        <h1 id="titulo">
+          <span class="abertura__sigla">SBSeg 2027</span>
+          <span class="abertura__nome">XXVII Simpósio Brasileiro de Cibersegurança</span>
+        </h1>
+        <p class="abertura__tema">IA e agentes de segurança para todos os segmentos</p>
+        <dl class="fatos">
+          <div class="fatos__item fatos__item--azul"><dt>Quando</dt><dd>30 de agosto a 2 de setembro de 2027</dd></div>
+          <div class="fatos__item fatos__item--laranja"><dt>Onde</dt><dd>Recife, Pernambuco</dd></div>
+          <div class="fatos__item fatos__item--verde"><dt>Sede</dt><dd>Mar Hotel, Boa Viagem</dd></div>
+        </dl>
+        <p class="acoes">
+          <a class="botao" href="#chamadas">Ver as chamadas</a>
+          <a class="botao botao--contorno" href="#patrocinio">Patrocinar o SBSeg</a>
+        </p>
+      </div>
+      <figure class="abertura__foto">
+        <img src="assets/img/passista-marco-zero.webp" width="900" height="1350" alt="Passista de frevo sorri sob uma sombrinha colorida no Marco Zero do Recife." fetchpriority="high">
+        <figcaption>Passista no Marco Zero. Foto: João Alberes, CC BY-SA 4.0.</figcaption>
+      </figure>
+    </div>
+
+    <svg class="sobrados" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="sobrado-a" viewBox="0 0 120 200">
+          <path d="M0 200V44h30q30-34 60 0h30v156z"/>
+          <rect y="52" width="120" height="7" fill="#fff" fill-opacity=".35"/>
+          <path d="M18 116V86a13 13 0 0 1 26 0v30zM76 116V86a13 13 0 0 1 26 0v30z" fill="#fff"/>
+          <rect x="10" y="116" width="100" height="5" fill="#10233f"/>
+          <path d="M46 200v-40a14 14 0 0 1 28 0v40z" fill="#10233f"/>
+          <path d="M14 186v-30h22v30zM84 186v-30h22v30z" fill="#fff"/>
+        </symbol>
+        <symbol id="sobrado-b" viewBox="0 0 100 240">
+          <path d="M0 240V30h12V18h76v12h12v210z"/>
+          <rect y="38" width="100" height="6" fill="#fff" fill-opacity=".35"/>
+          <path d="M16 96V64h22v32zM62 96V64h22v32zM16 160v-32h22v32zM62 160v-32h22v32z" fill="#fff"/>
+          <rect x="8" y="96" width="84" height="4" fill="#10233f"/>
+          <rect x="8" y="160" width="84" height="4" fill="#10233f"/>
+          <path d="M36 240v-44a14 14 0 0 1 28 0v44z" fill="#10233f"/>
+        </symbol>
+        <symbol id="palmeira" viewBox="0 0 80 240">
+          <path d="M38 240c2-60 4-120 2-170h4c2 50 0 110-2 170z" fill="#10233f"/>
+          <path d="M42 72C30 50 12 46 0 52c16-2 28 6 40 22zM42 72c8-24 24-34 38-32-14 4-26 14-36 34zM42 72C36 52 38 34 50 22c-6 16-6 32-6 50zM42 72C24 66 10 74 4 86c12-10 24-12 38-12z" fill="#009a4e"/>
+        </symbol>
+      </defs>
+      <use href="#sobrado-a" x="0" y="40" width="120" height="200" fill="#dd4012"/>
+      <use href="#sobrado-b" x="120" y="0" width="100" height="240" fill="#f7b500"/>
+      <use href="#sobrado-a" x="220" y="40" width="120" height="200" fill="#135b97"/>
+      <use href="#palmeira" x="330" y="10" width="80" height="230"/>
+      <use href="#sobrado-b" x="400" y="0" width="100" height="240" fill="#e2577a"/>
+      <use href="#sobrado-a" x="500" y="40" width="120" height="200" fill="#009a4e"/>
+      <use href="#sobrado-b" x="620" y="0" width="100" height="240" fill="#f28c28"/>
+      <use href="#sobrado-a" x="720" y="40" width="120" height="200" fill="#6fb7e3"/>
+      <use href="#sobrado-b" x="840" y="0" width="100" height="240" fill="#dd4012"/>
+      <use href="#palmeira" x="930" y="10" width="80" height="230"/>
+      <use href="#sobrado-a" x="1000" y="40" width="120" height="200" fill="#f7b500"/>
+      <use href="#sobrado-b" x="1120" y="0" width="100" height="240" fill="#135b97"/>
+      <use href="#sobrado-a" x="1220" y="40" width="120" height="200" fill="#e2577a"/>
+      <use href="#sobrado-b" x="1340" y="0" width="100" height="240" fill="#009a4e"/>
+      <rect x="0" y="236" width="1440" height="4" fill="#10233f"/>
+    </svg>
+  </section>
+
+  <section id="tema" class="tema" aria-labelledby="t-tema">
     <div class="faixa">
-      <p class="sobretitulo">27ª edição · CESeg/SBC</p>
-      <h1 id="titulo">XXVII Simpósio Brasileiro de Cibersegurança</h1>
-      <dl class="fatos">
-        <div><dt>Datas</dt><dd><span class="pendente">a definir</span></dd></div>
-        <div><dt>Local</dt><dd><span class="pendente">a definir</span></dd></div>
-        <div><dt>Instituição organizadora</dt><dd><span class="pendente">a definir</span></dd></div>
-        <div><dt>Formato</dt><dd>Presencial</dd></div>
-      </dl>
+      <h2 id="t-tema">IA para segurança e segurança da IA</h2>
+      <p class="tema__abre">Com a adoção em massa de IA e agentes, segurança deixou de ser assunto de especialistas: hoje é requisito para todos. As duas frentes estarão no centro do SBSeg 2027.</p>
+      <ul class="novidades">
+        <li><b>Trilha IA e Agentes</b><span>Sessões técnicas, palestras e painéis dedicados ao tema.</span></li>
+        <li><b>Desafio de Agentes</b><span>Agentes autônomos de ataque e defesa competem no CTF.</span></li>
+        <li><b>Minicursos práticos</b><span>Como construir, avaliar e proteger agentes de segurança.</span></li>
+        <li><b>Fórum da Indústria</b><span>Empresas apresentam desafios reais de IA aplicada à pesquisa.</span></li>
+        <li><b>Fórum de Gestores</b><span>Lideranças públicas e privadas discutem estratégia, risco e resiliência.</span></li>
+        <li><b>Painel executivo</b><span>Governança, riscos e regulação do uso de IA.</span></li>
+      </ul>
     </div>
   </section>
 
   <section id="evento" aria-labelledby="t-evento">
     <div class="faixa">
       <h2 id="t-evento">O evento</h2>
-      <p>O Simpósio Brasileiro de Cibersegurança (SBSeg), anteriormente denominado Simpósio Brasileiro em Segurança da Informação e de Sistemas Computacionais, é um evento científico realizado anualmente desde 2001 pela Sociedade Brasileira de Computação (SBC), sob responsabilidade da Comissão Especial de Cibersegurança (CESeg). É o principal fórum do país para divulgação de resultados de pesquisa, debates e intercâmbio de ideias em cibersegurança, reunindo pesquisadores, profissionais e estudantes da academia e da indústria. O evento é classificado como Qualis A4 pela CAPES.</p>
-      <p>A 27ª edição contará com sessões técnicas, minicursos, workshops, trilha da indústria, concurso de teses e dissertações e palestras de convidados de renome internacional. Foram 26 edições realizadas entre 2001 e 2026.</p>
+      <div class="duas-colunas">
+        <div>
+          <p>O Simpósio Brasileiro de Cibersegurança (SBSeg), anteriormente denominado Simpósio Brasileiro em Segurança da Informação e de Sistemas Computacionais, é um evento científico realizado anualmente desde 2001 pela Sociedade Brasileira de Computação (SBC), sob responsabilidade da Comissão Especial de Cibersegurança (CESeg). É o principal fórum do país para divulgação de resultados de pesquisa, debates e intercâmbio de ideias em cibersegurança, reunindo pesquisadores, profissionais e estudantes da academia e da indústria. O evento é classificado como Qualis A4 pela CAPES.</p>
+          <p>A 27ª edição terá sessões técnicas, minicursos, workshops, Trilha da Indústria, CTF, Salão de Ferramentas, concurso de teses e dissertações e palestras de convidados de renome internacional.</p>
+        </div>
+        <div>
+          <p class="numeros__legenda">A edição de 2026, em números</p>
+          <dl class="numeros">
+            <div><dt>participantes presenciais</dt><dd class="numeros__azul">356</dd></div>
+            <div><dt>trabalhos submetidos em todas as trilhas</dt><dd class="numeros__laranja">249</dd></div>
+            <div><dt>de aceitação na trilha principal</dt><dd class="numeros__amarelo">29%</dd></div>
+            <div><dt>edições anuais desde 2001</dt><dd class="numeros__verde">26</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="galeria-sbseg">
+        <figure>
+          <img src="assets/img/sbseg-painel.webp" width="1000" height="751" alt="Painel com pesquisadoras e pesquisadores à mesa em uma sessão do SBSeg." loading="lazy">
+          <figcaption>Painel em edição anterior do SBSeg.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/sbseg-ctf.webp" width="1000" height="662" alt="Apresentação da competição Capture The Flag no palco do SBSeg 2024." loading="lazy">
+          <figcaption>Capture The Flag no SBSeg 2024.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/sbseg-publico.webp" width="1000" height="665" alt="Participantes conversam no saguão durante um intervalo do simpósio." loading="lazy">
+          <figcaption>Intervalo entre sessões.</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
   <section id="chamadas" aria-labelledby="t-chamadas">
     <div class="faixa">
       <h2 id="t-chamadas">Chamadas</h2>
-      <p class="nota">As chamadas serão publicadas aqui. A lista abaixo segue as trilhas e os workshops das edições de 2024 a 2026.</p>
-      <h3>Trilhas e concursos</h3>
-      <ul class="lista">
-        <li><b>Trilha Principal</b>: artigos completos e curtos.</li>
-        <li><b>Trilha de Interação com a Indústria e de Inovação</b></li>
-        <li><b>Minicursos</b></li>
-        <li><b>CTDSeg</b>: Concurso de Teses e Dissertações em Cibersegurança.</li>
-        <li><b>SF</b>: Salão de Ferramentas.</li>
-        <li><b>CTF</b>: competição Capture The Flag.</li>
-      </ul>
-      <h3>Workshops</h3>
-      <ul class="lista">
-        <li><b>WTICG</b>: Workshop de Trabalhos de Iniciação Científica e de Graduação.</li>
-        <li><b>WISE</b>: Mulheres Brasileiras em Cibersegurança.</li>
-        <li><b>WGID</b>: Workshop de Gestão de Identidades Digitais.</li>
-        <li><b>WQuSec</b>: Workshop de Cibersegurança e Computação Quântica.</li>
-        <li><b>WCIA</b>: Workshop de Cibersegurança em IA.</li>
-      </ul>
+      <p class="nota">As chamadas serão publicadas aqui. A lista abaixo segue as trilhas e os workshops das edições de 2024 a 2026, acrescida das novidades de 2027.</p>
+      <div class="duas-colunas">
+        <div>
+          <h3>Trilhas e concursos</h3>
+          <ul class="itens">
+            <li><b>Trilha Principal</b>: artigos completos e curtos.</li>
+            <li><b>Trilha IA e Agentes</b>: novidade em 2027.</li>
+            <li><b>Trilha de Interação com a Indústria e de Inovação</b></li>
+            <li><b>Minicursos</b></li>
+            <li><b>CTDSeg</b>: Concurso de Teses e Dissertações em Cibersegurança.</li>
+            <li><b>SF</b>: Salão de Ferramentas.</li>
+            <li><b>CTF</b>: competição Capture The Flag, com o Desafio de Agentes.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Workshops</h3>
+          <ul class="itens">
+            <li><b>WTICG</b>: Workshop de Trabalhos de Iniciação Científica e de Graduação.</li>
+            <li><b>WISE</b>: Mulheres Brasileiras em Cibersegurança.</li>
+            <li><b>WGID</b>: Workshop de Gestão de Identidades Digitais.</li>
+            <li><b>WQuSec</b>: Workshop de Cibersegurança e Computação Quântica.</li>
+            <li><b>WCIA</b>: Workshop de Cibersegurança em IA.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="datas" aria-labelledby="t-datas">
     <div class="faixa">
       <h2 id="t-datas">Datas importantes</h2>
-      <table>
-        <caption class="nota">Trilha Principal. As demais datas serão publicadas em cada chamada.</caption>
-        <thead><tr><th scope="col">Etapa</th><th scope="col">Data</th></tr></thead>
-        <tbody>
-          <tr><td>Registro dos resumos</td><td><span class="pendente">a definir</span></td></tr>
-          <tr><td>Submissão dos artigos</td><td><span class="pendente">a definir</span></td></tr>
-          <tr><td>Notificação de aceitação</td><td><span class="pendente">a definir</span></td></tr>
-          <tr><td>Versão final</td><td><span class="pendente">a definir</span></td></tr>
-          <tr><td>Realização do simpósio</td><td><span class="pendente">a definir</span></td></tr>
-        </tbody>
-      </table>
+      <ol class="cronograma">
+        <li><span class="cronograma__etapa">Registro dos resumos</span><span class="pendente">a definir</span></li>
+        <li><span class="cronograma__etapa">Submissão dos artigos</span><span class="pendente">a definir</span></li>
+        <li><span class="cronograma__etapa">Notificação de aceitação</span><span class="pendente">a definir</span></li>
+        <li><span class="cronograma__etapa">Versão final</span><span class="pendente">a definir</span></li>
+        <li class="cronograma__final"><span class="cronograma__etapa">Realização do simpósio</span><span>30 de agosto a 2 de setembro de 2027</span></li>
+      </ol>
+      <p class="nota">Datas da Trilha Principal. As demais datas serão publicadas em cada chamada.</p>
+    </div>
+  </section>
+
+  <section id="recife" class="recife" aria-labelledby="t-recife">
+    <div class="faixa">
+      <h2 id="t-recife">Recife: onde tecnologia e cultura se encontram</h2>
+      <p class="tema__abre">A capital pernambucana une um dos maiores polos de tecnologia do país ao frevo, ao maracatu e ao casario colorido do Recife Antigo.</p>
+      <div class="mosaico">
+        <figure class="mosaico__grande">
+          <img src="assets/img/rua-do-bom-jesus.webp" width="1400" height="1050" alt="Sobrados coloridos e palmeiras na Rua do Bom Jesus, no Recife Antigo." loading="lazy">
+          <figcaption>Rua do Bom Jesus. Foto: A. Júnior, CC BY 2.0.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/frevo.webp" width="1000" height="641" alt="Dançarina de frevo com saia amarela rodando no meio de uma multidão festiva." loading="lazy">
+          <figcaption>Frevo. Foto: Prefeitura de Olinda, CC BY 2.0.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/img/paco-do-frevo.webp" width="1000" height="562" alt="Parede vermelha do Paço do Frevo coberta por nomes de compositores e a palavra frevo." loading="lazy">
+          <figcaption>Paço do Frevo. Foto: Eduardo Fonseca, CC BY 2.0.</figcaption>
+        </figure>
+        <figure class="mosaico__largo">
+          <img src="assets/img/recife-antigo-aereo.webp" width="1600" height="540" alt="Vista aérea do Recife Antigo, com o Marco Zero, o casario e o porto." loading="lazy">
+          <figcaption>Recife Antigo, vista aérea. Foto: Portal da Copa/ME, CC BY 3.0 BR.</figcaption>
+        </figure>
+      </div>
+      <ul class="pilares">
+        <li class="pilares__azul"><b>Porto Digital</b><span>Um dos maiores parques tecnológicos do país, no coração do Recife Antigo.</span></li>
+        <li class="pilares__laranja"><b>Academia forte</b><span>O Centro de Informática da UFPE é referência nacional em computação.</span></li>
+        <li class="pilares__verde"><b>Ecossistema vivo</b><span>CESAR, startups e empresas de software e segurança, ao som do frevo.</span></li>
+      </ul>
     </div>
   </section>
 
   <section id="local" aria-labelledby="t-local">
     <div class="faixa">
       <h2 id="t-local">Local do evento</h2>
-      <p>Cidade, local de realização, como chegar e hotéis recomendados serão divulgados pela comissão organizadora.</p>
+      <div class="local">
+        <div class="local__texto">
+          <p>O SBSeg 2027 acontece no <b>Mar Hotel</b>, no bairro de Boa Viagem, na zona sul do Recife, conhecido pela praia urbana de mesmo nome.</p>
+          <p>Informações sobre como chegar, hospedagem com tarifa especial, mobilidade e passeios serão divulgadas pela comissão organizadora.</p>
+        </div>
+        <figure class="local__foto">
+          <img src="assets/img/mar-hotel.webp" width="1200" height="564" alt="Fachada iluminada do Mar Hotel à noite, com a piscina e o jardim em primeiro plano." loading="lazy">
+          <figcaption>Mar Hotel, Boa Viagem. Foto: Mar Hotel.</figcaption>
+        </figure>
+        <figure class="local__foto">
+          <img src="assets/img/praia-boa-viagem.webp" width="1200" height="900" alt="Praia de Boa Viagem com guarda-sóis amarelos, arrecifes e prédios à beira-mar." loading="lazy">
+          <figcaption>Praia de Boa Viagem. Foto: A. Júnior, CC BY 2.0.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="patrocinio" aria-labelledby="t-patr">
+    <div class="faixa">
+      <h2 id="t-patr">Patrocine o SBSeg 2027</h2>
+      <p class="tema__abre">Leve sua marca a quem pesquisa, desenvolve, contrata e opera cibersegurança no Brasil: estudantes, profissionais do mercado, governo, forças armadas e pesquisadores de referência.</p>
+      <ul class="beneficios">
+        <li><b>Talento</b><span>Recrutamento direto com os melhores estudantes, no CTF e nos minicursos.</span></li>
+        <li><b>Marca</b><span>Naming rights, trilha principal, crachás, site, redes sociais e sinalização.</span></li>
+        <li><b>Vitrine</b><span>Stands, Salão de Ferramentas e palestras na Trilha da Indústria.</span></li>
+        <li><b>Conhecimento e P&amp;D</b><span>Conteúdo de fronteira e projetos de pesquisa com a academia.</span></li>
+        <li><b>Relacionamento</b><span>Coffees, jantar do evento e o novo Fórum de Gestores.</span></li>
+        <li><b>Impacto e ESG</b><span>WISE, bolsas de viagem e isenções de inscrição para estudantes.</span></li>
+      </ul>
+
+      <h3>Cotas</h3>
+      <div class="tabela-rolavel">
+        <table class="cotas">
+          <caption class="nota">Cada cota inclui os ativos das cotas anteriores.</caption>
+          <thead><tr><th scope="col">Cota</th><th scope="col">Investimento</th><th scope="col">Inclui</th></tr></thead>
+          <tbody>
+            <tr class="cotas__bronze"><th scope="row">Bronze</th><td>R$ 10 mil</td><td>Logo no site, nas redes e na sinalização; 1 inscrição cortesia.</td></tr>
+            <tr class="cotas__prata"><th scope="row">Prata</th><td>R$ 20 mil</td><td>Coffee e networking, iniciação científica, Salão de Ferramentas; 2 inscrições cortesia.</td></tr>
+            <tr class="cotas__ouro"><th scope="row">Ouro</th><td>R$ 50 mil</td><td>Stand próprio, palestra ou demo na Trilha da Indústria, minicursos e oficinas; 4 inscrições cortesia.</td></tr>
+            <tr class="cotas__diamante"><th scope="row">Diamante</th><td>R$ 100 mil</td><td>Trilha principal e destaque na abertura, vaga no Fórum de Gestores; 8 inscrições cortesia.</td></tr>
+            <tr class="cotas__estrategico"><th scope="row">Estratégico</th><td>Sob consulta</td><td>Anfitrião do Fórum de Gestores, projetos de P&amp;D com a academia, pacote sob medida.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota">Ativos adicionais, como naming rights do CTF ou do CTDSeg, jantar do evento, bolsas de viagem e cotas temáticas de IA, podem ser combinados com qualquer cota. Para receber o plano de patrocínio completo, fale com o Comitê de Patrocínio do SBSeg 2027 (<span class="pendente">contato a definir</span>).</p>
     </div>
   </section>
 
   <section id="organizacao" aria-labelledby="t-org">
     <div class="faixa">
       <h2 id="t-org">Organização</h2>
-      <ul class="lista">
-        <li><b>Realização</b>: Sociedade Brasileira de Computação (SBC).</li>
-        <li><b>Promoção</b>: Comissão Especial de Cibersegurança (CESeg).</li>
-        <li><b>Organização</b>: <span class="pendente">a definir</span></li>
-        <li><b>Coordenação geral e do comitê de programa</b>: <span class="pendente">a definir</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="patrocinio" aria-labelledby="t-patr">
-    <div class="faixa">
-      <h2 id="t-patr">Patrocine</h2>
-      <p>Patrocinar o SBSeg dá à sua organização exposição a executivos, tomadores de decisão, pesquisadores, profissionais e estudantes de todos os níveis da área de cibersegurança. As cotas de patrocínio serão publicadas em breve.</p>
+      <dl class="organizacao">
+        <div><dt>Realização</dt><dd>Sociedade Brasileira de Computação (SBC)</dd></div>
+        <div><dt>Promoção</dt><dd>Comissão Especial de Cibersegurança (CESeg)</dd></div>
+        <div><dt>Organização local</dt><dd><span class="pendente">a definir</span></dd></div>
+        <div><dt>Coordenação geral e do comitê de programa</dt><dd><span class="pendente">a definir</span></dd></div>
+      </dl>
     </div>
   </section>
 
@@ -121,9 +292,9 @@
     <div class="faixa">
       <h2 id="t-ant">Edições anteriores</h2>
       <ul class="edicoes">
-        <li><a href="../sbseg2026/">2026 · Armação dos Búzios, RJ</a></li>
-        <li><a href="../sbseg2025/">2025 · Foz do Iguaçu, PR</a></li>
-        <li><a href="../sbseg2024/">2024 · São José dos Campos, SP</a></li>
+        <li><a href="../2026/">2026, Armação dos Búzios (RJ)</a></li>
+        <li><a href="../2025/">2025, Foz do Iguaçu (PR)</a></li>
+        <li><a href="../2024/">2024, São José dos Campos (SP)</a></li>
         <li><a href="../">Todas as edições desde 2001</a></li>
       </ul>
     </div>
@@ -132,7 +303,8 @@
 
 <footer class="rodape">
   <div class="faixa">
-    <p>SBSeg 2027 · XXVII Simpósio Brasileiro de Cibersegurança · CESeg/SBC</p>
+    <p class="rodape__titulo">SBSeg 2027, XXVII Simpósio Brasileiro de Cibersegurança. Promoção da CESeg/SBC.</p>
+    <p>Fotos do Recife via Wikimedia Commons: Rua do Bom Jesus e Praia de Boa Viagem, A. Júnior (CC BY 2.0); Recife Antigo, Portal da Copa/ME (CC BY 3.0 BR); Paço do Frevo, Eduardo Fonseca (CC BY 2.0); Frevo, Prefeitura de Olinda (CC BY 2.0); Passista no Marco Zero, João Alberes (CC BY-SA 4.0). Demais fotos: edições anteriores do SBSeg e Mar Hotel. Ilustração dos sobrados: SBSeg 2027.</p>
   </div>
 </footer>
 </body>

@@ -1,14 +1,40 @@
-/* Mesmos tokens visuais do site principal (sbseg-sbc.github.io). */
+/*
+ * SBSeg 2027, Recife. Identidade da carta de patrocínio de 2027:
+ * marinho do logo e as quatro cores das sombrinhas de frevo.
+ */
 :root {
   --fundo: #fff;
-  --fundo-suave: #f6f8f9;
-  --linha: #e6eaec;
-  --texto: #16242a;
-  --apagado: #5d6b72;
-  --destaque: #0e8a78;
-  --destaque-escuro: #0a6457;
-  --destaque-suave: #e7f4f1;
-  --largura: 71.25rem;
+  --fundo-suave: #f4f6f8;
+  --linha: #dfe3e7;
+  --nevoa: #d0d3d6;
+  --texto: #1e2633;
+  --apagado: #5b6573;
+  --marinho: #10233f;
+
+  /* cores do frevo: superfície e ilustração */
+  --azul: #135b97;
+  --laranja: #dd4012;
+  --amarelo: #f7b500;
+  --verde: #009a4e;
+
+  /* mesmas cores, escurecidas para texto sobre branco (contraste AA) */
+  --azul-texto: #135b97;
+  --laranja-texto: #b83409;
+  --amarelo-texto: #8a5f00;
+  --verde-texto: #00733a;
+
+  --sombrinha: linear-gradient(
+    90deg,
+    var(--azul) 0 25%,
+    var(--laranja) 25% 50%,
+    var(--amarelo) 50% 75%,
+    var(--verde) 75% 100%
+  );
+  --display: "Bricolage Grotesque", "Public Sans", system-ui, sans-serif;
+  --corpo: "Public Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --largura: 72rem;
+  --raio: 0.5rem;
+  --espaco-secao: clamp(3rem, 7vw, 5.5rem);
 }
 
 *,
@@ -19,29 +45,48 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   margin: 0;
   background: var(--fundo);
   color: var(--texto);
-  font-family: Inter, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
+  font-family: var(--corpo);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 a {
-  color: var(--destaque-escuro);
+  color: var(--azul-texto);
+  text-underline-offset: 0.18em;
 }
 
-a:focus-visible {
-  outline: 3px solid var(--destaque);
-  outline-offset: 2px;
+a:hover {
+  color: var(--laranja-texto);
+}
+
+:focus-visible {
+  outline: 3px solid var(--laranja);
+  outline-offset: 3px;
 }
 
 .faixa {
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   max-width: var(--largura);
+}
+
+@media (width >= 48rem) {
+  .faixa {
+    padding: 0 2rem;
+  }
 }
 
 .pular {
@@ -62,87 +107,153 @@ a:focus-visible {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgb(255 255 255 / 92%);
+  background: rgb(255 255 255 / 94%);
   border-bottom: 1px solid var(--linha);
+  backdrop-filter: blur(8px);
 }
 
-.topo .faixa {
+.topo::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: var(--sombrinha);
+}
+
+.topo__faixa {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem 1.5rem;
-  padding-block: 0.9rem;
+  padding-block: 0.6rem;
 }
 
 .marca {
   display: flex;
+  flex: none;
   align-items: center;
   gap: 0.6rem;
-  color: var(--texto);
+  color: var(--marinho);
+  font-family: var(--display);
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   text-decoration: none;
 }
 
-.ponto {
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 50%;
-  background: var(--destaque);
+.marca img {
+  width: 2.1rem;
+  height: auto;
 }
 
 .menu {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.25rem 1.25rem;
-  font-size: 0.92rem;
+  overflow-x: auto;
+  font-size: 0.95rem;
   font-weight: 500;
+  white-space: nowrap;
+  scrollbar-width: none;
 }
 
 .menu a {
+  padding-block: 0.4rem;
   color: var(--apagado);
   text-decoration: none;
 }
 
 .menu a:hover {
-  color: var(--destaque-escuro);
+  color: var(--laranja-texto);
+}
+
+@media (width < 62rem) {
+  .topo__faixa {
+    flex-wrap: wrap;
+  }
+
+  .menu {
+    flex-basis: 100%;
+    padding-bottom: 0.2rem;
+  }
 }
 
 /* abertura */
 .abertura {
-  padding: 4.5rem 0 2.5rem;
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  overflow: hidden;
 }
 
-.sobretitulo {
-  margin: 0 0 1rem;
-  color: var(--destaque-escuro);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.abertura__grade {
+  display: grid;
+  gap: 2.5rem;
+  align-items: end;
+}
+
+@media (width >= 56rem) {
+  .abertura__grade {
+    grid-template-columns: 1.35fr 1fr;
+    gap: 3.5rem;
+  }
 }
 
 h1 {
   margin: 0;
-  max-width: 20ch;
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-family: var(--display);
+  color: var(--marinho);
+}
+
+.abertura__sigla {
+  display: block;
+  font-size: clamp(3.4rem, 11vw, 7.5rem);
   font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.06;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+.abertura__nome {
+  display: block;
+  margin-top: 0.9rem;
+  max-width: 22ch;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.abertura__tema {
+  margin: 1.25rem 0 0;
+  max-width: 36ch;
+  color: var(--laranja-texto);
+  font-size: 1.15rem;
+  font-style: italic;
 }
 
 .fatos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  gap: 1rem;
+  gap: 0.9rem 1.75rem;
   margin: 2rem 0 0;
 }
 
-.fatos div {
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--linha);
-  border-radius: 0.75rem;
+@media (width >= 36rem) {
+  .fatos {
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+  }
+}
+
+.fatos__item {
+  padding-left: 0.85rem;
+  border-left: 4px solid var(--nevoa);
+}
+
+.fatos__item--azul {
+  border-color: var(--azul);
+}
+
+.fatos__item--laranja {
+  border-color: var(--laranja);
+}
+
+.fatos__item--verde {
+  border-color: var(--verde);
 }
 
 .fatos dt {
@@ -151,93 +262,583 @@ h1 {
 }
 
 .fatos dd {
-  margin: 0.25rem 0 0;
+  margin: 0.1rem 0 0;
+  color: var(--marinho);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+}
+
+.botao {
+  display: inline-block;
+  padding: 0.75rem 1.35rem;
+  border: 2px solid var(--marinho);
+  border-radius: 999px;
+  background: var(--marinho);
+  color: #fff;
   font-weight: 600;
+  text-decoration: none;
+}
+
+.botao:hover {
+  border-color: var(--laranja-texto);
+  background: var(--laranja-texto);
+  color: #fff;
+}
+
+.botao--contorno {
+  background: transparent;
+  color: var(--marinho);
+}
+
+.abertura__foto {
+  position: relative;
+  margin: 0;
+  justify-self: center;
+  width: min(100%, 19rem);
+}
+
+@media (width >= 56rem) {
+  .abertura__foto {
+    width: min(100%, 26rem);
+  }
+}
+
+.abertura__foto img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border-radius: 12rem 12rem var(--raio) var(--raio);
+}
+
+.abertura__foto figcaption {
+  margin-top: 0.5rem;
+  color: var(--apagado);
+  font-size: 0.78rem;
+}
+
+/* faixa ilustrada de sobrados do Recife Antigo */
+.sobrados {
+  display: block;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  width: 100%;
+  height: clamp(7rem, 16vw, 14rem);
+}
+
+/* seções */
+main > section:not(.abertura) {
+  padding: var(--espaco-secao) 0;
+}
+
+main > section + section:not(.tema, .recife) {
+  border-top: 1px solid var(--linha);
+}
+
+h2 {
+  margin: 0 0 1.25rem;
+  max-width: 28ch;
+  color: var(--marinho);
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+h2::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 5px;
+  margin-bottom: 1rem;
+  border-radius: 3px;
+  background: var(--sombrinha);
+}
+
+h3 {
+  margin: 2rem 0 0.75rem;
+  color: var(--marinho);
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+p {
+  max-width: 68ch;
+}
+
+.nota {
+  color: var(--apagado);
+  font-size: 0.95rem;
 }
 
 .pendente {
   color: var(--apagado);
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;
 }
 
-/* seções */
-main section:not(.abertura) {
-  padding: 2.5rem 0;
-  border-top: 1px solid var(--linha);
+.duas-colunas {
+  display: grid;
+  gap: 1rem 3.5rem;
 }
 
-h2 {
-  margin: 0 0 1rem;
-  font-size: 1.6rem;
-  letter-spacing: -0.02em;
+@media (width >= 56rem) {
+  .duas-colunas {
+    grid-template-columns: 1.2fr 1fr;
+  }
 }
 
-h3 {
-  margin: 1.5rem 0 0.5rem;
-  font-size: 1.1rem;
+/* tema 2027: o único bloco escuro da página */
+.tema {
+  background: var(--marinho);
+  color: #e8edf3;
 }
 
-p {
-  max-width: 72ch;
+.tema h2 {
+  color: #fff;
 }
 
-.nota {
+.tema__abre {
+  margin-top: 0;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.55;
+}
+
+.tema .tema__abre {
+  color: #e8edf3;
+}
+
+.novidades,
+.beneficios,
+.pilares {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.75rem 2.5rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.novidades li,
+.beneficios li,
+.pilares li {
+  display: grid;
+  gap: 0.3rem;
+  padding-top: 1rem;
+  border-top: 3px solid var(--nevoa);
+}
+
+.novidades b,
+.beneficios b,
+.pilares b {
+  font-family: var(--display);
+  font-size: 1.15rem;
+}
+
+.novidades li {
+  border-top-color: rgb(255 255 255 / 25%);
+}
+
+.novidades b {
+  color: #fff;
+}
+
+.novidades span {
+  color: #c9d3df;
+}
+
+.novidades li:nth-child(4n + 1),
+.beneficios li:nth-child(4n + 1) {
+  border-top-color: var(--azul);
+}
+
+.novidades li:nth-child(4n + 2),
+.beneficios li:nth-child(4n + 2) {
+  border-top-color: var(--laranja);
+}
+
+.novidades li:nth-child(4n + 3),
+.beneficios li:nth-child(4n + 3) {
+  border-top-color: var(--amarelo);
+}
+
+.novidades li:nth-child(4n),
+.beneficios li:nth-child(4n) {
+  border-top-color: var(--verde);
+}
+
+.novidades li:nth-child(4n + 1) {
+  border-top-color: #4d9ad8;
+}
+
+.beneficios b,
+.pilares b {
+  color: var(--marinho);
+}
+
+.beneficios span,
+.pilares span {
   color: var(--apagado);
 }
 
-.lista {
+/* números de 2026 */
+.numeros__legenda {
+  margin: 0 0 0.75rem;
+  color: var(--apagado);
+  font-weight: 600;
+}
+
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1.75rem;
+  margin: 0;
+}
+
+.numeros div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.numeros dt {
+  color: var(--apagado);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.numeros dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 6vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.numeros__azul {
+  color: var(--azul-texto);
+}
+
+.numeros__laranja {
+  color: var(--laranja-texto);
+}
+
+.numeros__amarelo {
+  color: var(--amarelo-texto);
+}
+
+.numeros__verde {
+  color: var(--verde-texto);
+}
+
+.galeria-sbseg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  margin-top: 0.45rem;
+  color: var(--apagado);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.galeria-sbseg img,
+.mosaico img,
+.local__foto img {
+  width: 100%;
+  border-radius: var(--raio);
+  object-fit: cover;
+}
+
+.galeria-sbseg img {
+  aspect-ratio: 3 / 2;
+}
+
+/* chamadas */
+.itens {
+  margin: 0;
   padding-left: 1.2rem;
 }
 
-.lista li {
-  margin: 0.3rem 0;
+.itens li {
+  margin: 0.45rem 0;
 }
 
-table {
+.itens li::marker {
+  color: var(--laranja);
+}
+
+/* datas: linha do tempo */
+.cronograma {
+  display: grid;
+  gap: 0;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  max-width: 44rem;
+  list-style: none;
+}
+
+.cronograma li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+  position: relative;
+  padding: 0.85rem 0 0.85rem 1.75rem;
+  border-bottom: 1px solid var(--linha);
+}
+
+.cronograma li::before {
+  content: "";
+  position: absolute;
+  top: 1.35rem;
+  left: 0.2rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid var(--azul);
+  border-radius: 50%;
+  background: var(--fundo);
+}
+
+.cronograma__etapa {
+  font-weight: 600;
+}
+
+.cronograma__final {
+  color: var(--marinho);
+  font-weight: 700;
+}
+
+.cronograma li.cronograma__final::before {
+  border-color: var(--laranja);
+  background: var(--laranja);
+}
+
+/* recife */
+.recife {
+  background: var(--fundo-suave);
+}
+
+.mosaico {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.mosaico img {
+  height: 100%;
+}
+
+.mosaico figure {
+  display: flex;
+  flex-direction: column;
+}
+
+.mosaico figure img {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+@media (width >= 48rem) {
+  .mosaico {
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: 15rem 15rem 13rem;
+  }
+
+  .mosaico__grande {
+    grid-row: span 2;
+  }
+
+  .mosaico__largo {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (width < 48rem) {
+  .mosaico img {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+.pilares li.pilares__azul {
+  border-top-color: var(--azul);
+}
+
+.pilares li.pilares__laranja {
+  border-top-color: var(--laranja);
+}
+
+.pilares li.pilares__verde {
+  border-top-color: var(--verde);
+}
+
+/* local */
+.local {
+  display: grid;
+  gap: 1.5rem 2.5rem;
+}
+
+@media (width >= 56rem) {
+  .local {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .local__texto {
+    grid-column: 1 / -1;
+  }
+}
+
+.local__texto p:first-child {
+  margin-top: 0;
+}
+
+.local__foto img {
+  aspect-ratio: 16 / 9;
+}
+
+/* patrocínio */
+.tabela-rolavel {
+  overflow-x: auto;
+}
+
+.cotas {
   width: 100%;
-  max-width: 40rem;
+  min-width: 34rem;
   border-collapse: collapse;
 }
 
-caption {
+.cotas caption {
   margin-bottom: 0.5rem;
   text-align: left;
 }
 
-th,
-td {
-  padding: 0.6rem 0.75rem;
+.cotas th,
+.cotas td {
+  padding: 0.85rem 0.9rem;
   border-bottom: 1px solid var(--linha);
   text-align: left;
+  vertical-align: top;
 }
 
-th {
-  background: var(--fundo-suave);
+.cotas thead th {
+  color: var(--apagado);
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
+.cotas tbody th {
+  border-left: 5px solid var(--nevoa);
+  color: var(--marinho);
+  font-family: var(--display);
+  font-size: 1.1rem;
+}
+
+.cotas td:nth-child(2) {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cotas td:last-child {
+  min-width: 16rem;
+}
+
+.cotas__bronze th {
+  border-left-color: #b8794a;
+}
+
+.cotas__prata th {
+  border-left-color: #a3abb5;
+}
+
+.cotas__ouro th {
+  border-left-color: var(--amarelo);
+}
+
+.cotas__diamante th {
+  border-left-color: var(--azul);
+}
+
+.cotas__estrategico th {
+  border-left-color: var(--laranja);
+}
+
+/* organização */
+.organizacao {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1.5rem 2.5rem;
+  margin: 0;
+}
+
+.organizacao dt {
+  color: var(--apagado);
+  font-size: 0.9rem;
+}
+
+.organizacao dd {
+  margin: 0.15rem 0 0;
+  font-weight: 600;
+}
+
+/* edições anteriores */
 .edicoes {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .edicoes a {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.1rem;
   border: 1px solid var(--linha);
   border-radius: 999px;
-  background: var(--destaque-suave);
+  color: var(--marinho);
+  font-weight: 500;
   text-decoration: none;
 }
 
+.edicoes a:hover {
+  border-color: var(--laranja);
+  color: var(--laranja-texto);
+}
+
+/* rodapé */
 .rodape {
-  padding: 2rem 0;
-  border-top: 1px solid var(--linha);
-  color: var(--apagado);
-  font-size: 0.9rem;
+  padding: 2.5rem 0 3rem;
+  background: var(--marinho);
+  color: #c9d3df;
+  font-size: 0.88rem;
+}
+
+.rodape::before {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-top: -2.5rem;
+  margin-bottom: 2.5rem;
+  background: var(--sombrinha);
+}
+
+.rodape__titulo {
+  color: #fff;
+  font-weight: 600;
 }
 
 @media (prefers-reduced-motion: reduce) {
