@@ -144,6 +144,12 @@ a:hover {
   height: auto;
 }
 
+/* "27" no laranja do frevo, como na marca da programação. */
+.marca em {
+  font-style: normal;
+  color: var(--laranja-texto);
+}
+
 .menu {
   display: flex;
   gap: 0.25rem 1.25rem;

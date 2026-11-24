@@ -726,7 +726,7 @@ function renderGradePorSala(doDia) {
   $('#grade-salas').innerHTML = quadroPorSala(doDia);
 }
 
-/** Programação completa: os quatro dias, um quadro por dia, tudo de uma vez.
+/** Programação completa: todos os dias da grade, um quadro por dia, tudo de uma vez.
  *  É a vista para ter a forma do evento inteiro diante dos olhos, e a que faz
  *  sentido imprimir. */
 function renderGradeCompleta() {
@@ -865,7 +865,7 @@ function conflitosDaMinhaGrade(blocos) {
 }
 
 /** A seleção em quadros de sala. Em "salas" só aparecem os dias em que há algo
- *  escolhido; em "completa" aparecem os quatro dias, para os vazios ficarem
+ *  escolhido; em "completa" aparecem todos os dias da grade, para os vazios ficarem
  *  visíveis, que é justamente a informação útil de quem monta a agenda. */
 function renderMinhaGradeEmQuadros(todosOsDias) {
   const escolhidas = atividadesDaMinhaGrade();
@@ -878,7 +878,7 @@ function renderMinhaGradeEmQuadros(todosOsDias) {
       ${escolhidas.length} ${escolhidas.length === 1 ? 'atividade escolhida' : 'atividades escolhidas'}
       em ${[...new Set(escolhidas.map((a) => a.dia))].length} ${[...new Set(escolhidas.map((a) => a.dia))].length === 1 ? 'dia' : 'dias'}${
         emConflito.size ? ` · <strong style="color:var(--magenta)">${emConflito.size} com choque de horário</strong>` : ''}.
-      ${todosOsDias ? 'Os quatro dias do evento aparecem, inclusive os que você deixou livres.' : ''}
+      ${todosOsDias ? 'Todos os dias da grade aparecem, inclusive os que você deixou livres.' : ''}
     </p>`;
 
   return resumo + dias.map((dia) => {

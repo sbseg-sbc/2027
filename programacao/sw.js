@@ -14,12 +14,12 @@
 // Subir a versão descarta o cache anterior no activate, então uma correção
 // chega ao aparelho na visita seguinte em vez de ficar mais um ciclo na cópia
 // velha por causa do stale-while-revalidate.
-const VERSAO = 'sbseg27-previa-v2';
+const VERSAO = 'sbseg27-previa-v4';
 const ESSENCIAIS = [
   './',
   'index.html',
-  'assets/css/app.css',
-  'assets/js/app.mjs',
+  'assets/css/app.css?v=4',
+  'assets/js/app.mjs?v=4',
   'data/programacao.json',
   '../assets/img/logo-sbseg2027.png',   // vai no cabeçalho de todas as telas
   '../assets/img/favicon.png',
@@ -28,7 +28,9 @@ const ESSENCIAIS = [
 self.addEventListener('install', (evento) => {
   evento.waitUntil(
     caches.open(VERSAO)
-      .then((cache) => cache.addAll(ESSENCIAIS))
+      // cache: 'reload' pula o cache HTTP do navegador (max-age=600 no GitHub
+      // Pages); sem isso a versão nova do SW podia guardar o CSS antigo.
+      .then((cache) => cache.addAll(ESSENCIAIS.map((u) => new Request(u, { cache: 'reload' }))))
       .then(() => self.skipWaiting())
       .catch(() => self.skipWaiting())
   );

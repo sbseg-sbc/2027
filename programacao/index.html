@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Programação (prévia) | SBSeg 2027</title>
-<meta name="description" content="Prévia da programação do XXVII Simpósio Brasileiro de Cibersegurança (SBSeg 2027), de 30 de agosto a 2 de setembro de 2027, no Mar Hotel, em Recife. Grade baseada em 2026, com busca e grade pessoal salva no navegador.">
+<meta name="description" content="Prévia da programação do XXVII Simpósio Brasileiro de Cibersegurança (SBSeg 2027), de 30 de agosto a 3 de setembro de 2027, no Mar Hotel, em Recife. Grade baseada em 2026, com busca e grade pessoal salva no navegador.">
 <meta name="theme-color" content="#f4f6f8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b1a2f" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
@@ -14,21 +14,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="fetch" href="data/programacao.json" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&amp;family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap">
-<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/app.css?v=4">
 </head>
 <body data-vista="lista">
 
 <header class="site-topo" aria-label="SBSeg 2027">
   <div class="envelope site-topo__faixa">
     <a class="site-marca" href="../">
-      <img src="../assets/img/logo-sbseg2027.png" width="320" height="354" alt="">
-      <span>SBSeg 2027</span>
+      <img src="../assets/img/logo-sbseg2027.png" width="34" height="38" alt="">
+      <span>SBSeg<em>27</em></span>
     </a>
     <nav class="site-menu" aria-label="Navegação principal">
-      <a href="../">Início</a>
-      <a href="../chamadas/">Chamadas</a>
+      <a href="../#tema">Tema 2027</a>
+      <a href="../#evento">O evento</a>
+      <a href="../#chamadas">Chamadas</a>
       <a href="./" aria-current="page">Programação</a>
       <a href="../#datas">Datas</a>
+      <a href="../#recife">Recife</a>
       <a href="../#local">Local</a>
       <a href="../#patrocinio">Patrocine</a>
       <a href="../../">Todas as edições</a>
@@ -40,15 +42,6 @@
   <div class="envelope">
     <div class="topo__linha">
 
-      <a class="marca" href="../">
-        <img class="marca__emblema" src="../assets/img/logo-sbseg2027.png" alt=""
-             width="320" height="354" decoding="async">
-        <span class="marca__texto">
-          <span class="marca__sigla">SBSeg<em>27</em></span>
-          <span class="marca__local">Mar Hotel · Recife</span>
-        </span>
-        <span class="oculto-visual">Voltar ao site do SBSeg 2027</span>
-      </a>
 
       <nav class="navegacao navegacao--topo" aria-label="Seções da programação">
         <button type="button" class="navegacao__item" data-ir="grade" aria-current="page">
@@ -91,7 +84,7 @@
 
 <main class="envelope" id="conteudo">
 
-  <p class="aviso-previa" role="note"><b>Prévia baseada na programação de 2026.</b> A grade mostra a forma da programação do SBSeg 2026 transposta para 30 de agosto a 2 de setembro de 2027. Artigos, palestrantes, salas e horários definitivos ainda serão definidos. <a href="../chamadas/">Ver as chamadas</a>.</p>
+  <p class="aviso-previa" role="note"><b>Prévia baseada na programação de 2026.</b> A grade mostra a forma da programação do SBSeg 2026 transposta para 2027; o simpósio acontece de 30 de agosto a 3 de setembro de 2027. Artigos, palestrantes, salas e horários definitivos ainda serão definidos. <a href="../chamadas/">Ver as chamadas</a>.</p>
 
   <!-- ============================================================ grade -->
   <section class="painel" id="painel-grade" data-ativo="sim" aria-label="Grade da programação">
@@ -144,7 +137,7 @@
              alt="SBSeg 2027, XXVII Simpósio Brasileiro de Cibersegurança."
              width="320" height="354" loading="lazy" decoding="async">
       </a>
-      <p>XXVII Simpósio Brasileiro de Cibersegurança · 30 de agosto a 2 de setembro de 2027 · Mar Hotel, Boa Viagem, Recife (PE)</p>
+      <p>XXVII Simpósio Brasileiro de Cibersegurança · 30 de agosto a 3 de setembro de 2027 · Mar Hotel, Boa Viagem, Recife (PE)</p>
       <p><a href="../">sbseg-sbc.github.io/2027</a></p>
     </div>
 
@@ -195,6 +188,6 @@
   </button>
 </nav>
 
-<script src="assets/js/app.mjs" type="module"></script>
+<script src="assets/js/app.mjs?v=4" type="module"></script>
 </body>
 </html>

@@ -85,7 +85,7 @@ body {
 /* ------------------------------------------------- cabeçalho do site -- */
 /* Mesmo cabeçalho das demais páginas do SBSeg 2027 (logo e menu principal).
    Não é sticky: rola para fora e deixa só a barra da programação presa no
-   topo. Prefixo site- para não colidir com .topo e .marca da programação. */
+   topo. Prefixo site- para não colidir com .topo da programação. */
 .site-topo {
   background: var(--papel-2);
   border-bottom: 1px solid var(--filete);
@@ -103,7 +103,9 @@ a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; 
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 2.5px solid var(--magenta); outline-offset: 2px; border-radius: 4px; }
 
-.envelope { max-width: 1180px; margin-inline: auto; padding-inline: clamp(14px, 4vw, 34px); }
+/* Mesma largura e respiro da .faixa do site (72rem; 1rem e, a partir de 48rem, 2rem). */
+.envelope { max-width: 72rem; margin-inline: auto; padding-inline: 1rem; }
+@media (min-width: 48rem) { .envelope { padding-inline: 2rem; } }
 
 .rotulo {
   font-family: var(--mono);
@@ -137,6 +139,7 @@ button { font: inherit; color: inherit; }
 }
 
 .site-marca img { width: 2.1rem; height: auto; }
+.site-marca em { font-style: normal; color: var(--magenta); }
 
 .site-menu {
   display: flex;
@@ -177,32 +180,18 @@ button { font: inherit; color: inherit; }
   border-bottom: 1px solid var(--filete);
 }
 
-/* Grade com áreas nomeadas em vez de flex-wrap com `order`. No celular a busca
-   ocupa uma linha inteira por definição, e não porque a linha "estourou": não
-   há como ela ser espremida a zero nem deixar de quebrar. */
+/* Grade com áreas nomeadas em vez de flex-wrap com `order`. A marca do
+   evento fica só no cabeçalho do site; aqui a busca ocupa a coluna flexível
+   e tem mínimo garantido, então não é espremida pelos botões ao lado. */
 .topo__linha {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "marca acoes"
-    "busca busca";
+  grid-template-areas: "busca acoes";
   align-items: center;
   gap: 10px 12px;
   padding-block: 10px;
 }
 
-.marca { grid-area: marca; display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
-.marca__emblema { inline-size: 34px; block-size: 34px; width: 34px; height: 34px; flex: none; object-fit: contain; }
-.marca__texto { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
-.marca__sigla {
-  font-family: var(--mono); font-stretch: 80%; font-weight: 700;
-  font-size: 17px; letter-spacing: -.01em; white-space: nowrap;
-}
-.marca__sigla em { font-style: normal; color: var(--magenta); }
-.marca__local {
-  font-size: 13px; font-style: italic; color: var(--tinta-2);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
 
 .topo__acoes { grid-area: acoes; display: flex; gap: 6px; }
 
@@ -690,12 +679,11 @@ body[data-vista="completa"] .abas { display: none; }
   /* Uma linha só. A coluna da busca tem mínimo garantido, então ela nunca é
      comprimida pelos vizinhos. */
   .topo__linha {
-    grid-template-columns: auto auto minmax(220px, 1fr) auto;
-    grid-template-areas: "marca nav busca acoes";
+    grid-template-columns: auto minmax(220px, 1fr) auto;
+    grid-template-areas: "nav busca acoes";
     padding-block: 12px;
   }
   .busca { justify-self: end; inline-size: min(400px, 100%); }
-  .marca__emblema { inline-size: 38px; block-size: 38px; width: 38px; height: 38px; }
 
   .cartao__titulo { font-size: 18.5px; }
 
