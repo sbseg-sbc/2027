@@ -14,7 +14,7 @@
 // Subir a versão descarta o cache anterior no activate, então uma correção
 // chega ao aparelho na visita seguinte em vez de ficar mais um ciclo na cópia
 // velha por causa do stale-while-revalidate.
-const VERSAO = 'sbseg27-previa-v1';
+const VERSAO = 'sbseg27-previa-v2';
 const ESSENCIAIS = [
   './',
   'index.html',

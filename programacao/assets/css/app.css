@@ -82,8 +82,17 @@ body {
   overflow-wrap: break-word;
 }
 
+/* ------------------------------------------------- cabeçalho do site -- */
+/* Mesmo cabeçalho das demais páginas do SBSeg 2027 (logo e menu principal).
+   Não é sticky: rola para fora e deixa só a barra da programação presa no
+   topo. Prefixo site- para não colidir com .topo e .marca da programação. */
+.site-topo {
+  background: var(--papel-2);
+  border-bottom: 1px solid var(--filete);
+}
+
 /* Faixa com as quatro cores das sombrinhas de frevo, como no site 2027. */
-.topo::before {
+.site-topo::before {
   content: "";
   display: block;
   height: 4px;
@@ -104,6 +113,50 @@ button { font: inherit; color: inherit; }
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--tinta-2);
+}
+
+.site-topo__faixa {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.6rem;
+}
+
+.site-marca {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--tinta);
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.site-marca img { width: 2.1rem; height: auto; }
+
+.site-menu {
+  display: flex;
+  flex-basis: 100%;
+  gap: 0.25rem 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.site-menu a { padding-block: 0.4rem; color: var(--tinta-2); text-decoration: none; }
+.site-menu a:hover { color: var(--magenta); }
+.site-menu a[aria-current="page"] { color: var(--tinta); font-weight: 700; }
+
+@media (min-width: 62rem) {
+  .site-topo__faixa { flex-wrap: nowrap; }
+  .site-menu { flex-basis: auto; padding-bottom: 0; }
 }
 
 .oculto-visual {
@@ -690,7 +743,7 @@ body[data-vista="completa"] .abas { display: none; }
 }
 
 @media print {
-  .topo, .navegacao, .filtros, .estrela, .abas { display: none !important; }
+  .site-topo, .topo, .navegacao, .filtros, .estrela, .abas { display: none !important; }
   .painel { display: block !important; }
   body { padding: 0; background: #fff; }
 }
