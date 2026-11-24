@@ -87,6 +87,8 @@ body {
    Não é sticky: rola para fora e deixa só a barra da programação presa no
    topo. Prefixo site- para não colidir com .topo da programação. */
 .site-topo {
+  position: relative;   /* referência da lista do menu Informações */
+  z-index: 50;          /* lista aberta por cima da barra sticky (.topo, 40) */
   background: var(--papel-2);
   border-bottom: 1px solid var(--filete);
 }
@@ -134,11 +136,11 @@ button { font: inherit; color: inherit; }
   color: var(--tinta);
   font-family: var(--mono);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   text-decoration: none;
 }
 
-.site-marca img { width: 2.1rem; height: auto; }
+.site-marca img { width: 2.9rem; height: auto; }
 .site-marca em { font-style: normal; color: var(--magenta); }
 
 .site-menu {
@@ -156,6 +158,35 @@ button { font: inherit; color: inherit; }
 .site-menu a { padding-block: 0.4rem; color: var(--tinta-2); text-decoration: none; }
 .site-menu a:hover { color: var(--magenta); }
 .site-menu a[aria-current="page"] { color: var(--tinta); font-weight: 700; }
+
+/* Menu "Informações", igual ao das demais páginas (ver estilo.css). */
+.site-grupo { flex: none; }
+.site-grupo summary {
+  display: flex; align-items: center; gap: 0.35rem; padding-block: 0.4rem;
+  color: var(--tinta-2); cursor: pointer; list-style: none;
+}
+.site-grupo summary::-webkit-details-marker { display: none; }
+.site-grupo summary::after {
+  content: ""; width: 0.4em; height: 0.4em;
+  border-right: 2px solid currentcolor; border-bottom: 2px solid currentcolor;
+  transform: translateY(-25%) rotate(45deg);
+}
+.site-grupo[open] summary::after { transform: translateY(20%) rotate(225deg); }
+.site-grupo summary:hover { color: var(--magenta); }
+.site-grupo__lista {
+  position: absolute; top: 100%; right: 1rem; left: 1rem; z-index: 1;
+  margin: 0; padding: 0.4rem; list-style: none;
+  background: var(--papel-2); border: 1px solid var(--filete); border-radius: var(--raio);
+  box-shadow: var(--sombra); white-space: normal;
+}
+.site-grupo__lista a { display: block; padding: 0.55rem 0.8rem; border-radius: 6px; color: var(--tinta); }
+.site-grupo__lista a:hover { background: var(--papel-3); color: var(--magenta); }
+
+@media (min-width: 70rem) {
+  .site-menu { overflow: visible; }
+  .site-grupo { position: relative; }
+  .site-grupo__lista { top: calc(100% + 0.4rem); right: auto; left: -0.8rem; min-width: 14rem; }
+}
 
 @media (min-width: 62rem) {
   .site-topo__faixa { flex-wrap: nowrap; }

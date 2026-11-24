@@ -14,15 +14,16 @@
 // Subir a versão descarta o cache anterior no activate, então uma correção
 // chega ao aparelho na visita seguinte em vez de ficar mais um ciclo na cópia
 // velha por causa do stale-while-revalidate.
-const VERSAO = 'sbseg27-previa-v4';
+const VERSAO = 'sbseg27-previa-v6';
 const ESSENCIAIS = [
   './',
   'index.html',
-  'assets/css/app.css?v=4',
-  'assets/js/app.mjs?v=4',
+  'assets/css/app.css?v=6',
+  'assets/js/app.mjs?v=6',
   'data/programacao.json',
   '../assets/img/logo-sbseg2027.png',   // vai no cabeçalho de todas as telas
   '../assets/img/favicon.png',
+  '../assets/menu.js',                 // menu Informações do cabeçalho
 ];
 
 self.addEventListener('install', (evento) => {

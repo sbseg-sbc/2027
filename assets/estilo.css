@@ -135,12 +135,12 @@ a:hover {
   color: var(--marinho);
   font-family: var(--display);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   text-decoration: none;
 }
 
 .marca img {
-  width: 2.1rem;
+  width: 2.9rem;
   height: auto;
 }
 
@@ -178,6 +178,98 @@ a:hover {
   .menu {
     flex-basis: 100%;
     padding-bottom: 0.2rem;
+  }
+}
+
+.menu a[aria-current="page"] {
+  color: var(--marinho);
+  font-weight: 700;
+}
+
+/* Menu "Informações": <details> com a lista em posição absoluta. A lista
+   toma como referência o .topo (sticky, portanto posicionado), e não o
+   .menu, por isso não é cortada pela rolagem horizontal do menu no celular. */
+.menu__grupo {
+  flex: none;
+}
+
+.menu__grupo summary {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-block: 0.4rem;
+  color: var(--apagado);
+  cursor: pointer;
+  list-style: none;
+}
+
+.menu__grupo summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu__grupo summary::after {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: translateY(-25%) rotate(45deg);
+}
+
+.menu__grupo[open] summary::after {
+  transform: translateY(20%) rotate(225deg);
+}
+
+.menu__grupo summary:hover {
+  color: var(--laranja-texto);
+}
+
+.menu__grupo:has([aria-current="page"]) summary {
+  color: var(--marinho);
+  font-weight: 700;
+}
+
+.menu__lista {
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  left: 1rem;
+  z-index: 11;
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  background: var(--fundo);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  box-shadow: 0 14px 30px -14px rgb(16 35 63 / 35%);
+}
+
+.menu__lista a {
+  display: block;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.35rem;
+  color: var(--texto);
+}
+
+.menu__lista a:hover {
+  background: var(--fundo-suave);
+  color: var(--laranja-texto);
+}
+
+@media (width >= 70rem) {
+  .menu {
+    overflow: visible;
+  }
+
+  .menu__grupo {
+    position: relative;
+  }
+
+  .menu__lista {
+    top: calc(100% + 0.4rem);
+    right: auto;
+    left: -0.8rem;
+    min-width: 14rem;
   }
 }
 
